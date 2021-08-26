@@ -15,7 +15,7 @@ object GenerateFile extends App {
     if (file.isEmpty) {
       FileWriterJSON.logErrorFile(ApplicationConfig.config.getString("error_path"), "Couldn't read the CSV File")
     } else {
-      FileWriter.convertCsvToTrainers(FileReaderCSV.convertCsvToTrainers(file), ApplicationConfig.config.getString("csv_path"))  
+      FileWriterJSON.convertCsvToTrainers(FileReaderCSV.convertCsvToTrainers(file), ApplicationConfig.config.getString("csv_path"))  
     }
   }
 }
