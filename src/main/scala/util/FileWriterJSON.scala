@@ -9,14 +9,14 @@ class FileWriterJSON {
     Try(new PrintWriter(path)) match {
       case Success(value) => value.println(errorMessage)
         value.close()
-      case Failure(exception) => println("Couldn't write the Error to the File")
+      case Failure(exception) => println("Would not write the Error to File")
     }
   }
 
   def convertCsvToTrainers(trainers: Trainers, output : String ): Unit = {
-    val result = trainers.trainer match {
+    val solution = trainers.trainer match {
       case Nil =>
-        println("No Data Found to write")
+        println(" D ")
         "{}"
       case res @head => {
         trainers.toJson.prettyPrint
@@ -24,13 +24,12 @@ class FileWriterJSON {
     }
     Try(new PrintWriter(output)) match {
       case Success(value) => {
-        value.println(result)
+        value.println(solution)
         value.close()
       }
       case Failure(exception) => {
-        println("Couldn't write the Result to the File")
+        println("Would not write the Result to File")
       }
     }
   }
-
 }
