@@ -47,4 +47,15 @@ class FileReaderCSV extends App{
     })
     Trainers.apply(trainers)
   }
+  
+  implicit val TrainerJsonFormat: RootJsonFormat[Trainer] = jsonFormat4(Trainer)
+
+  implicit val TrainersJsonFormat: RootJsonFormat[Trainers] = jsonFormat1(Trainers)
+
+  def convertToTrainer(trainer : String) = {
+    trainer.parseJson.convertTo[Trainer]
+  }
+  def convertToTrainers(trainers : String ) = {
+    trainers.parseJson.convertTo[Trainers]
+  }
 }
