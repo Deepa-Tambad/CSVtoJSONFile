@@ -7,7 +7,7 @@ object GenerateFile extends App {
 
 
   private def CsvFileToJsonFile = {
-    val file: List[String] = Try(FileReaderCSV.CsvToJson(ApplicationConfig.config.getString("jsonpath"))) match {
+    val file: List[String] = Try(FileReaderCSV.CsvToJson(ApplicationConfig.config.getString("source_path"))) match {
       case Success(value) => value
       case Failure(exception) => List.empty
     }
