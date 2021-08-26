@@ -36,16 +36,14 @@ def readCSVFile(path: String): Option[util.List[String]] = {
   def readJsonFile(jsonSourcePath : String): List[String] = {
     Try(Source.fromFile(jsonSourcePath)) match {
       case Success(source: Source) => {
-        val fileContent = source.getLines().toList
+        val file = source.getLines().toList
         source.close()
-        fileContent
+        file
       }
       case Failure(exception) => {
         List.empty
       }
     }
   }
-
-
 }
 
