@@ -6,19 +6,19 @@ import scala.util.{Failure, Success, Try}
 class FileWriterJSON {
 
 
-  def convertCsvStringToTrainers(file: List[String]): Trainers = {
+  def convertCsvToTrainers(file: List[String]): Trainers = {
 
     val first: List[String] = file.head.split(",").toList
 
     @tailrec
-    def readData(tail: List[String], headers: List[String],
+    def readData(tail: List[String], front: List[String],
                  trainers: List[Trainer] ): List[Trainer] = tail match {
       case Nil => trainers
       case head :: tail => {
         val row_Value: List[String] = head.split(",").toList
-        val tuple: List[(String, String)] = headers.zip(row_Value)
+        val tuple: List[(String, String)] = front.zip(row_Value)
         val tupleMap: Map[String, String] = tuple.toMap
-        readData(tail, headers, trainers)
+        readData(tail, front, trainers)
       }
     }
 
@@ -41,7 +41,7 @@ class FileWriterJSON {
     }).map(it => {
       val data: (String, String, String, String) = it.get
       val mobileNumber = if (data._4 != null && data._4.nonEmpty) Some.apply(data._4.toLong) else None
-      Trainer.apply(data._1.toLong, data._2, data._3, mobile)
+      Trainer.apply(data._1.toLong, data._2, data._3, mobileNumber)
     })
     Trainers.apply(trainers)
   }
