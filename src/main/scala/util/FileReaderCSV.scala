@@ -5,6 +5,7 @@ import spray.json.{RootJsonFormat, enrichString}
 import spray.json.DefaultJsonProtocol._
 import scala.io.Source
 import scala.util.{Failure, Success, Try}
+import scala.annotation.tailrec
 
 
 class FileReaderCSV extends App{
